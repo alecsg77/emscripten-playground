@@ -1,0 +1,28 @@
+{
+    "configurations": [
+        {
+            "name": "emcc",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/emsdk_portable/emscripten/sdk/system/include/"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
+                "__EMSCRIPTEN__",
+                "unix",
+                "__unix",
+                "__unix__",
+                "__llvm__",
+                "__clang__",
+                "__GNUC__"
+            ],
+            "intelliSenseMode": "clang-x64",
+            "cStandard": "c11",
+            "cppStandard": "c++20",
+            "compilerPath": "/emsdk_portable/llvm/clang/bin/clang-6.0"
+        }
+    ],
+    "version": 4
+}
