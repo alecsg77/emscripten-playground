@@ -2,17 +2,8 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.112.0/containers/docker-existing-dockerfile
 {
 	"name": "emscripten",
-	"dockerFile": "Dockerfile",
-	"build": {
-		"args": {
-			"BUILD_TASKS": "USER"
-		}
-	},
-	"runArgs": [
-		"--cap-add=SYS_PTRACE",
-		"--security-opt",
-		"seccomp=unconfined"
-	],
+	"image": "trzeci/emscripten",
+	"postCreateCommand": "/emsdk_portable/emscripten/sdk/embuilder.py build USER",
 	// Set *default* container specific settings.json values on container create.
 	"settings": {
 		"terminal.integrated.shell.linux": "/bin/bash"
