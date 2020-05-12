@@ -12,18 +12,21 @@ INC_DIRS := $(shell find $(SRCD) -type d)
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
 CPPFLAGS ?= $(INC_FLAGS) -MMD -MP -s USE_SDL=2
+LDFLAGS ?= -s USE_SDL=2
+DEBUG_FLAGS = --js-opts 0 -g4 --source-map-base / --emrun
 
-DEBUG_FLAGS = --js-opts 0 -g4 --source-map-base http://localhost:5500/
-
-all: $(OUTD)/$(OUT)
+build: $(OUTD)/$(OUT)
 
 DEBUG: CPPFLAGS += $(DEBUG_FLAGS)
 DEBUG: LDFLAGS += $(DEBUG_FLAGS)
-DEBUG: all
+DEBUG: build $(OUTD)/$(SRCD)/
 
 $(OUTD)/$(OUT): $(OBJS)
 	$(MKDIR_P) $(@D)
-	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
+	$(LINK.o) $(OBJS) $(LOADLIBES) $(LDLIBS) -o $@
+
+$(OUTD)/$(SRCD)/:
+	ln -srf $(SRCD) $(OUTD)
 
 # assembly
 $(OBJD)/%.s.bc: $(SRCD)/%.s
@@ -40,8 +43,9 @@ $(OBJD)/%.cpp.bc: $(SRCD)/%.cpp
 	$(MKDIR_P) $(@D)
 	$(COMPILE.cpp) $< $(OUTPUT_OPTION)
 
-.PHONY: clean
+.PHONY: clean build rebuild
 
+rebuild: clean build
 clean: clean_obj clean_out
 
 clean_obj:
