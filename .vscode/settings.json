@@ -1,5 +1,0 @@
-{
-	"liveServer.settings.root": "/bin/",
-	"liveServer.settings.NoBrowser": true,
-	"liveServer.settings.mount": [["/src","./src"]]
-}

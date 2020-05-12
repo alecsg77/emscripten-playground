@@ -4,7 +4,8 @@
             "name": "emcc",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/emsdk_portable/emscripten/sdk/system/include/"
+                "/emsdk_portable/emscripten/sdk/system/include/**",
+                "/emsdk_portable/.data/cache/asmjs/ports-builds/sdl2/include/**"
             ],
             "defines": [
                 "_DEBUG",

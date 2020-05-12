@@ -4,13 +4,48 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "emmake",
+            "label": "build",
             "type": "shell",
-            "command": "emmake make",
+            "command": "emmake make DEBUG",
+            "problemMatcher": [
+                "$gcc"
+            ],
             "group": {
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "label": "clean",
+            "type": "shell",
+            "command": "emmake make clean",
+            "group": "build",
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "run",
+            "type": "shell",
+            "command": "emrun --no_browser ${workspaceFolder}/bin/index.html",
+            "isBackground": true,
+            "problemMatcher": [
+                {
+                  "pattern": [
+                    {
+                      "regexp": ".",
+                      "file": 1,
+                      "location": 2,
+                      "message": 3
+                    }
+                  ],
+                  "background": {
+                    "activeOnStart": false,
+                    "beginsPattern": "Web server root directory",
+                    "endsPattern": "Now listening at"
+                  }
+                }
+              ]
         }
     ]
 }

@@ -1,3 +1,5 @@
-FROM trzeci/emscripten:latest as build
+ARG EMSCRIPTEN_VERSION=latest
+FROM trzeci/emscripten:${EMSCRIPTEN_VERSION} as build
 
-RUN ["/usr/bin/python","/emsdk_portable/emscripten/sdk/embuilder.py","build","ALL"]
+ARG BUILD_TASKS=MINIMAL
+RUN /emsdk_portable/emscripten/sdk/embuilder.py build ${BUILD_TASKS}
